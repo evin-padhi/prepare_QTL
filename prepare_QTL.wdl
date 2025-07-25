@@ -14,10 +14,6 @@ task eqtl_prepare_expression {
     String? normalization_method
     String? flags  # --convert_tpm, --legacy_mode
 
-    Int memory
-    Int disk_space
-    Int num_threads
-
     command {
         set -euo pipefail
         /src/eqtl_prepare_expression.py ${tpm_gct} ${counts_gct} \
@@ -78,6 +74,13 @@ task compute_PCs{
 } 
 
 workflow prepare_QTL_data {
+    input {
+    
+    Int memory
+    Int disk_space
+    Int num_threads
+
+    }
     call eqtl_prepare_expression
     call compute_PCs
 }
