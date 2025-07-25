@@ -10,7 +10,8 @@ RUN micromamba install -y -n base -c conda-forge -c bioconda \
     conda-forge::datatable \
     conda-forge::r-optparse \
     conda-forge::r-janitor \
-    bioconda::bioconductor-pcatools
+    bioconda::bioconductor-pcatools \
+    conda-forge::r-rnomni
 
 COPY calculate_PCs.R . 
 ## Default command to run when the container starts
