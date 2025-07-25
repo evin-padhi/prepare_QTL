@@ -74,13 +74,11 @@ task compute_PCs{
 } 
 
 workflow prepare_QTL_data {
-    input {
     
     Int memory
     Int disk_space
     Int num_threads
 
-    }
     call eqtl_prepare_expression
     call compute_PCs
 }
