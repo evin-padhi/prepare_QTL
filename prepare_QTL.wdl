@@ -9,9 +9,9 @@ task eqtl_prepare_expression {
     String prefix
     
 
-    Int memory 
-    Int disk_space 
-    Int num_threads 
+    #Int memory 
+    #Int disk_space 
+    #Int num_threads 
 
     Float? tpm_threshold
     Int? count_threshold
@@ -51,11 +51,6 @@ task eqtl_prepare_expression {
 task compute_PCs{
     File expression_bed 
     File genotype_covariates 
-    String prefix
-    
-    Int memory 
-    Int disk_space 
-    Int num_threads 
     command {
 
     Rscript /tmp/compute_PCS.R \
@@ -82,6 +77,14 @@ task compute_PCs{
 } 
 
 workflow prepare_QTL_data {
+    input{ 
+    String prefix
+    
+    Int memory 
+    Int disk_space 
+    Int num_threads 
+
+    }
     call eqtl_prepare_expression 
     call compute_PCs {
     input:
