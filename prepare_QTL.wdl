@@ -47,7 +47,9 @@ task compute_PCs{
     File expression_bed
     File genotype_covariates 
     String prefix
-
+    Int memory
+    Int disk_space
+    Int num_threads
     command {
 
     Rscript /tmp/compute_PCS.R \
