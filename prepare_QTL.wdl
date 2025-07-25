@@ -5,6 +5,7 @@ task eqtl_prepare_expression {
     File annotation_gtf
     File sample_participant_ids
     File vcf_chr_list
+    File sample_list
     String prefix
 
     Float? tpm_threshold
@@ -22,6 +23,7 @@ task eqtl_prepare_expression {
         /src/eqtl_prepare_expression.py ${tpm_gct} ${counts_gct} \
         ${annotation_gtf} ${sample_participant_ids} ${vcf_chr_list} ${prefix} \
         ${"--tpm_threshold " + tpm_threshold} \
+        ${"--sample_ids " + sample_list} \
         ${"--count_threshold " + count_threshold} \
         ${"--sample_frac_threshold " + sample_frac_threshold} \
         ${"--normalization_method " + normalization_method} \
