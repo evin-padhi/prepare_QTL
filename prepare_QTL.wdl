@@ -85,9 +85,21 @@ workflow prepare_QTL_data {
     Int num_threads 
 
     }
-    call eqtl_prepare_expression 
+    call eqtl_prepare_expression{
+    input:
+        prefix = prefix
+        memory = memory 
+        disk_space = disk_space
+        num_threads = num_threads
+
+
+    } 
     call compute_PCs {
     input:
         expression_bed = eqtl_prepare_expression.expression_bed
+        prefix = prefix
+        memory = memory 
+        disk_space = disk_space
+        num_threads = num_threads
     }
 }
