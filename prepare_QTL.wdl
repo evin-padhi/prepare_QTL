@@ -7,6 +7,7 @@ task eqtl_prepare_expression {
     File vcf_chr_list
     File sample_list
     String prefix
+    
     Int memory
     Int disk_space
     Int num_threads
@@ -70,8 +71,8 @@ task compute_PCs{
     }
 
     output {
-        File expression_bed="${prefix}.expression.bed.gz"
-        File expression_bed_index="${prefix}.expression.bed.gz.tbi"
+        File expression_bed="${prefix}_phenotype_PCs.tsv"
+        File expression_bed_index="${prefix}_QTL_covariates.tsv"
     }
 
     meta {
