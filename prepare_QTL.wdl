@@ -77,7 +77,7 @@ task compute_PCs{
 } 
 
 workflow prepare_QTL_data {
-    input{ 
+    input { 
     String prefix
     
     Int memory 
