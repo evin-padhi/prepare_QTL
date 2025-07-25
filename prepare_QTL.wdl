@@ -1,24 +1,24 @@
 task eqtl_prepare_expression {
+    input{
+        File tpm_gct
+        File counts_gct
+        File annotation_gtf
+        File sample_participant_ids
+        File vcf_chr_list
+        File sample_list
+        String prefix
+        
 
-    File tpm_gct
-    File counts_gct
-    File annotation_gtf
-    File sample_participant_ids
-    File vcf_chr_list
-    File sample_list
-    String prefix
-    
+        Int memory 
+        Int disk_space 
+        Int num_threads 
 
-    Int memory 
-    Int disk_space 
-    Int num_threads 
-
-    Float? tpm_threshold
-    Int? count_threshold
-    Float? sample_frac_threshold
-    String? normalization_method
-    String? flags  # --convert_tpm, --legacy_mode
-
+        Float? tpm_threshold
+        Int? count_threshold
+        Float? sample_frac_threshold
+        String? normalization_method
+        String? flags  # --convert_tpm, --legacy_mode
+    }
     command {
         set -euo pipefail
         /src/eqtl_prepare_expression.py ${tpm_gct} ${counts_gct} \
@@ -49,13 +49,16 @@ task eqtl_prepare_expression {
 }
 
 task compute_PCs{
-    File expression_bed 
-    File genotype_covariates 
-    String prefix
+    
+    input{
+        File expression_bed 
+        File genotype_covariates 
+        String prefix
 
-    Int memory
-    Int disk_space
-    Int num_threads    
+        Int memory
+        Int disk_space
+        Int num_threads   
+    }
     command {
 
     Rscript /tmp/compute_PCS.R \
