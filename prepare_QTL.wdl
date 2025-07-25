@@ -7,6 +7,10 @@ task eqtl_prepare_expression {
     File vcf_chr_list
     File sample_list
     String prefix
+    Int memory
+    Int disk_space
+    Int num_threads
+
 
     Float? tpm_threshold
     Int? count_threshold
@@ -77,10 +81,6 @@ task compute_PCs{
 
 workflow prepare_QTL_data {
     
-    Int memory
-    Int disk_space
-    Int num_threads
-
     call eqtl_prepare_expression
     call compute_PCs
 }
