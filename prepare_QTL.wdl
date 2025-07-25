@@ -77,29 +77,52 @@ task compute_PCs{
 } 
 
 workflow prepare_QTL_data {
-    input { 
-    String prefix
-    
-    Int memory 
-    Int disk_space 
-    Int num_threads 
-
+    input {
+        String prefix
+        Int memory 
+        Int disk_space 
+        Int num_threads 
+        File genotype_covariates
+        # other inputs required by `eqtl_prepare_expression` as well
+        File tpm_gct
+        File counts_gct
+        File annotation_gtf
+        File sample_participant_ids
+        File vcf_chr_list
+        File sample_list
+        Float? tpm_threshold
+        Int? count_threshold
+        Float? sample_frac_threshold
+        String? normalization_method
+        String? flags
     }
-    call eqtl_prepare_expression{
-    input:
-        prefix = prefix
-        memory = memory 
-        disk_space = disk_space
-        num_threads = num_threads
 
+    call eqtl_prepare_expression {
+        input:
+            prefix = prefix,
+            memory = memory,
+            disk_space = disk_space,
+            num_threads = num_threads,
+            tpm_gct = tpm_gct,
+            counts_gct = counts_gct,
+            annotation_gtf = annotation_gtf,
+            sample_participant_ids = sample_participant_ids,
+            vcf_chr_list = vcf_chr_list,
+            sample_list = sample_list,
+            tpm_threshold = tpm_threshold,
+            count_threshold = count_threshold,
+            sample_frac_threshold = sample_frac_threshold,
+            normalization_method = normalization_method,
+            flags = flags
+    }
 
-    } 
     call compute_PCs {
-    input:
-        expression_bed = eqtl_prepare_expression.expression_bed
-        prefix = prefix
-        memory = memory 
-        disk_space = disk_space
-        num_threads = num_threads
+        input:
+            expression_bed = eqtl_prepare_expression.expression_bed,
+            prefix = prefix,
+            memory = memory,
+            disk_space = disk_space,
+            num_threads = num_threads,
+            genotype_covariates = genotype_covariates
     }
 }
