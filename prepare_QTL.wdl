@@ -49,7 +49,7 @@ task eqtl_prepare_expression {
 }
 
 task compute_PCs{
-    File eqtl_prepare_expression.expression_bed
+    File expression_bed = eqtl_prepare_expression.expression_bed
     File genotype_covariates 
     String prefix
     
