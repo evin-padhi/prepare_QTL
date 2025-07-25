@@ -9,9 +9,9 @@ task eqtl_prepare_expression {
     String prefix
     
 
-    Int memory = memory,
-    Int disk_space = disk_space,
-    Int num_threads = num_threads
+    Int memory 
+    Int disk_space 
+    Int num_threads 
 
     Float? tpm_threshold
     Int? count_threshold
@@ -53,9 +53,9 @@ task compute_PCs{
     File genotype_covariates 
     String prefix
     
-    Int memory = memory,
-    Int disk_space = disk_space,
-    Int num_threads = num_threads
+    Int memory 
+    Int disk_space 
+    Int num_threads 
     command {
 
     Rscript /tmp/compute_PCS.R \
