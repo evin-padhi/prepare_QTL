@@ -101,7 +101,6 @@ workflow prepare_QTL_data {
         String? normalization_method
         String? flags
     }
-
     call eqtl_prepare_expression {
         input:
             prefix = prefix,
