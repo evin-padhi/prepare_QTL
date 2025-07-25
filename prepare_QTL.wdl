@@ -57,7 +57,7 @@ task compute_PCs{
 
     }
     runtime {
-        docker: ""
+        docker: "evinpadhi/prepare_qtl:latest"
         memory: "${memory}GB"
         disks: "local-disk ${disk_space} HDD"
         cpu: "${num_threads}"
@@ -78,6 +78,7 @@ workflow prepare_QTL_data {
     Int memory
     Int disk_space
     Int num_threads
+    Int disk_space
 
     call eqtl_prepare_expression
     call compute_PCs
