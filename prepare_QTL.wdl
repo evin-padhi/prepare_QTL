@@ -81,7 +81,6 @@ task compute_PCs{
 } 
 
 workflow prepare_QTL_data {
-    input {
         String prefix
         Int memory 
         Int disk_space 
@@ -100,7 +99,6 @@ workflow prepare_QTL_data {
         Float? sample_frac_threshold
         String? normalization_method
         String? flags
-    }
     call eqtl_prepare_expression {
         input:
             prefix = prefix,
