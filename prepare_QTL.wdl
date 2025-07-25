@@ -49,7 +49,7 @@ task eqtl_prepare_expression {
 }
 
 task compute_PCs{
-    File expression_bed = eqtl_prepare_expression.expression_bed
+    File expression_bed 
     File genotype_covariates 
     String prefix
     
@@ -82,9 +82,9 @@ task compute_PCs{
 } 
 
 workflow prepare_QTL_data {
-    Int memory
-    Int disk_space
-    Int num_threads
-    call eqtl_prepare_expression
-    call compute_PCs
+    call eqtl_prepare_expression 
+    call compute_PCs {
+    input:
+        expression_bed = eqtl_prepare_expression.expression_bed
+    }
 }
