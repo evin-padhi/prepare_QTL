@@ -1,5 +1,4 @@
 task eqtl_prepare_expression {
-    input{
         File tpm_gct
         File counts_gct
         File annotation_gtf
@@ -18,7 +17,6 @@ task eqtl_prepare_expression {
         Float? sample_frac_threshold
         String? normalization_method
         String? flags  # --convert_tpm, --legacy_mode
-    }
     command {
         set -euo pipefail
         /src/eqtl_prepare_expression.py ${tpm_gct} ${counts_gct} \
@@ -50,7 +48,6 @@ task eqtl_prepare_expression {
 
 task compute_PCs{
     
-    input{
         File expression_bed 
         File genotype_covariates 
         String prefix
@@ -58,7 +55,6 @@ task compute_PCs{
         Int memory
         Int disk_space
         Int num_threads   
-    }
     command {
 
     Rscript /tmp/compute_PCS.R \
