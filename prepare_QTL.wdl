@@ -71,8 +71,8 @@ task compute_PCs{
     }
 
     output {
-        File expression_bed="${prefix}_phenotype_PCs.tsv"
-        File expression_bed_index="${prefix}_QTL_covariates.tsv"
+        File phenotype_pcs="${prefix}_phenotype_PCs.tsv"
+        File QTL_covariates="${prefix}_QTL_covariates.tsv"
     }
 
     meta {
